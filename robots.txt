@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://www.pawanrajpandey.com.np/sitemap.xml
