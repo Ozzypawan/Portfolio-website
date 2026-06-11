@@ -1,7 +1,8 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, lazy, Suspense } from 'react'
 import { motion } from 'framer-motion'
 import gsap from 'gsap'
-import HeroCanvas from '../canvas/HeroCanvas'
+
+const HeroCanvas = lazy(() => import('../canvas/HeroCanvas'))
 import { personalInfo } from '../data/index'
 import { useApp } from '../context/AppContext'
 
@@ -79,7 +80,9 @@ export default function Hero() {
       </div>
 
       <div className="hero-canvas-wrap">
-        <HeroCanvas />
+        <Suspense fallback={null}>
+          <HeroCanvas />
+        </Suspense>
       </div>
 
       <motion.div
