@@ -1,5 +1,3 @@
-/* Structural / visual data — all translatable text lives in translations.js */
-
 export const personalInfo = {
   name:     'Pawan Raj Pandey',
   location: 'Kathmandu, Nepal',
@@ -41,7 +39,6 @@ export const skillCategoryKeys = [
   'Architecture',
 ]
 
-/* text fields (role, bullets) are in translations.js, indexed in the same order */
 export const experience = [
   {
     id:       1,
@@ -83,7 +80,6 @@ export const education = {
   period:      '2020 – 2024',
 }
 
-/* text fields (title, description, tag) are in translations.js, indexed in the same order */
 export const projects = [
   {
     id:       1,

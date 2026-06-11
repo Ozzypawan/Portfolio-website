@@ -8,9 +8,6 @@ const EJS_SERVICE  = 'service_p2oogfn'
 const EJS_TEMPLATE = 'template_hvp363l'
 const EJS_KEY      = 'uhRaRpArFs1iBQ1oy'
 
-/* ------------------------------------------------------------------ */
-/* Brand SVG icons                                                      */
-/* ------------------------------------------------------------------ */
 const GmailIcon = () => (
   <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="22" height="22">
     <path fill="#EA4335" d="M6 20H4a2 2 0 01-2-2V7.25L12 14l10-6.75V18a2 2 0 01-2 2h-2V9.75L12 16 6 9.75V20z"/>
@@ -43,32 +40,25 @@ const SOCIAL_META = {
   phone:    { Icon: PhoneIcon,    bg: '#16a34a', href: 'tel:+9779767279454' },
 }
 
-/* ------------------------------------------------------------------ */
-/* Check icon for success state                                         */
-/* ------------------------------------------------------------------ */
 const CheckIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" width="32" height="32">
     <polyline points="20 6 9 17 4 12" />
   </svg>
 )
 
-/* ------------------------------------------------------------------ */
-/* Component                                                            */
-/* ------------------------------------------------------------------ */
 export default function Contact() {
   const { t } = useApp()
   const tc = t.contact
   const tf = tc.form
 
   const [form, setForm]     = useState({ name: '', email: '', message: '' })
-  const [status, setStatus] = useState('idle') // idle | sending | sent | error
+  const [status, setStatus] = useState('idle')
 
   const onChange = (e) => setForm({ ...form, [e.target.name]: e.target.value })
 
   const onSubmit = async (e) => {
     e.preventDefault()
     setStatus('sending')
-    console.log('Form data being sent:', { name: form.name, email: form.email, message: form.message, title: 'Portfolio Contact' })
     try {
       await emailjs.send(
         EJS_SERVICE,
@@ -100,7 +90,6 @@ export default function Contact() {
         </motion.div>
 
         <div className="contact-grid-new">
-          {/* ---- Form card ---- */}
           <motion.div
             className="contact-form-card"
             variants={popLeft}
@@ -200,7 +189,6 @@ export default function Contact() {
             </AnimatePresence>
           </motion.div>
 
-          {/* ---- Social links ---- */}
           <motion.div
             className="contact-socials"
             variants={popRight}

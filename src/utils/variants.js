@@ -1,5 +1,3 @@
-/* Shared Framer Motion variants — spring-based pop system */
-
 const SPRING = { type: 'spring', damping: 16, stiffness: 120, mass: 0.75 }
 const SPRING_SOFT = { type: 'spring', damping: 20, stiffness: 100 }
 
