@@ -28,7 +28,18 @@ export default function Navbar() {
       transition={{ duration: 0.6, ease: 'easeOut' }}
     >
       <a href="#home" className="nav-logo">
-        <span className="gradient-text">P</span>awan
+        {'Pawan Raj Pandey'.split('').map((char, i) => (
+          <motion.span
+            key={i}
+            className={i === 0 ? 'gradient-text' : ''}
+            initial={{ opacity: 0, scale: 0.4, y: 10 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ delay: 0.3 + i * 0.05, type: 'spring', stiffness: 300, damping: 14 }}
+            style={{ display: 'inline-block', whiteSpace: 'pre' }}
+          >
+            {char}
+          </motion.span>
+        ))}
       </a>
 
       <ul className="nav-links">
