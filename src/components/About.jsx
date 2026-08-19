@@ -47,7 +47,7 @@ export default function About() {
             onMouseLeave={resetAvatarTilt}
           >
             <img
-              src="/avatar.jpg"
+              src="/avatar-v2.jpg"
               alt="Pawan Raj Pandey"
               className="avatar-img"
               onError={(e) => { e.currentTarget.style.visibility = 'hidden' }}
