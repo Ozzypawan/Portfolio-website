@@ -36,3 +36,15 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
+
+      - name: Ping IndexNow (Bing, Yandex, etc.)
+        run: |
+          URLS=$(grep -oP '(?<=<loc>)[^<]+' public/sitemap.xml | jq -R . | jq -s .)
+          curl -s -X POST "https://api.indexnow.org/indexnow" \
+            -H "Content-Type: application/json; charset=utf-8" \
+            -d "{
+                  \"host\": \"www.pawanrajpandey.com.np\",
+                  \"key\": \"097eef686cac3e136bcdd6b93bb75a9c\",
+                  \"keyLocation\": \"https://www.pawanrajpandey.com.np/097eef686cac3e136bcdd6b93bb75a9c.txt\",
+                  \"urlList\": $URLS
+                }"
