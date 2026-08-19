@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { Stars, Float } from '@react-three/drei'
 import { EffectComposer, Bloom } from '@react-three/postprocessing'
@@ -51,18 +51,36 @@ function Lights() {
 }
 
 export default function HeroCanvas() {
+  const wrapRef = useRef()
+  const [visible, setVisible] = useState(true)
+
+  useEffect(() => {
+    const el = wrapRef.current
+    if (!el) return
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setVisible(entry.isIntersecting),
+      { threshold: 0 },
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
+
   return (
-    <Canvas
-      camera={{ position: [0, 0, 7], fov: 50 }}
-      gl={{ antialias: true, alpha: true }}
-      style={{ background: 'transparent' }}
-    >
-      <Lights />
-      <TorusKnot />
-      <Stars radius={120} depth={60} count={6000} factor={4} saturation={0} fade speed={0.4} />
-      <EffectComposer>
-        <Bloom luminanceThreshold={0.1} luminanceSmoothing={0.9} intensity={1.6} mipmapBlur />
-      </EffectComposer>
-    </Canvas>
+    <div ref={wrapRef} style={{ width: '100%', height: '100%' }}>
+      <Canvas
+        camera={{ position: [0, 0, 7], fov: 50 }}
+        gl={{ antialias: true, alpha: true }}
+        style={{ background: 'transparent' }}
+        frameloop={visible ? 'always' : 'never'}
+      >
+        <Lights />
+        <TorusKnot />
+        <Stars radius={120} depth={60} count={6000} factor={4} saturation={0} fade speed={0.4} />
+        <EffectComposer>
+          <Bloom luminanceThreshold={0.1} luminanceSmoothing={0.9} intensity={1.6} mipmapBlur />
+        </EffectComposer>
+      </Canvas>
+    </div>
   )
 }
