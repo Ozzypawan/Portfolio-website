@@ -2,6 +2,8 @@ import { motion } from 'framer-motion'
 import { projects } from '../data/index'
 import { useApp } from '../context/AppContext'
 import { popUp, stagger, VIEWPORT } from '../utils/variants'
+import RevealTitle from './RevealTitle'
+import { handleSpotlightMove } from '../utils/spotlight'
 
 export default function Projects() {
   const { t } = useApp()
@@ -19,7 +21,7 @@ export default function Projects() {
           viewport={VIEWPORT}
         >
           <span className="section-tag">{tp.tag}</span>
-          <h2 className="section-title">{tp.title}</h2>
+          <RevealTitle as="h2" className="section-title" text={tp.title} />
         </motion.div>
 
         <motion.div
@@ -34,10 +36,11 @@ export default function Projects() {
             return (
               <motion.article
                 key={project.id}
-                className="project-card"
+                className="project-card spotlight"
                 style={{ background: project.gradient }}
                 variants={popUp}
                 whileHover={{ y: -7, transition: { type: 'spring', damping: 15, stiffness: 200 } }}
+                onMouseMove={handleSpotlightMove}
               >
                 <div className="project-accent-bar" style={{ background: project.accent }} />
 

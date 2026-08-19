@@ -2,7 +2,6 @@ import { useEffect } from 'react'
 import Lenis from 'lenis'
 import { AppProvider, useApp } from './context/AppContext'
 import Navbar from './components/Navbar'
-import CustomCursor from './components/CustomCursor'
 import Controls from './components/Controls'
 import Hero from './components/Hero'
 import About from './components/About'
@@ -30,7 +29,6 @@ function PortfolioContent() {
 
   return (
     <>
-      <CustomCursor />
       <Navbar />
       <Controls />
       <main style={{ transition: 'opacity 0.15s ease', opacity: fading ? 0 : 1 }}>

@@ -5,6 +5,7 @@ import gsap from 'gsap'
 const HeroCanvas = lazy(() => import('../canvas/HeroCanvas'))
 import { personalInfo } from '../data/index'
 import { useApp } from '../context/AppContext'
+import Magnetic from './Magnetic'
 
 export default function Hero() {
   const containerRef = useRef()
@@ -74,8 +75,12 @@ export default function Hero() {
         <p className="hero-description gsap-desc">{t.hero.description}</p>
 
         <div className="hero-actions">
-          <a href="#projects"    className="btn btn-primary gsap-cta">{t.hero.viewProjects}</a>
-          <a href="#experience"  className="btn btn-outline gsap-cta">{t.hero.myExperience}</a>
+          <Magnetic>
+            <a href="#projects" className="btn btn-primary gsap-cta">{t.hero.viewProjects}</a>
+          </Magnetic>
+          <Magnetic>
+            <a href="#experience" className="btn btn-outline gsap-cta">{t.hero.myExperience}</a>
+          </Magnetic>
         </div>
       </div>
 

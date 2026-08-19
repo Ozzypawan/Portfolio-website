@@ -60,31 +60,11 @@
 
 body { overflow-x: hidden; }
 
-@media (pointer: fine) { body { cursor: none; } }
-
 #root { width: 100%; min-height: 100svh; }
 
 a { text-decoration: none; color: inherit; }
 img { max-width: 100%; display: block; }
 ul  { list-style: none; }
-
-.cursor-dot {
-  position: fixed; top: 0; left: 0;
-  width: 8px; height: 8px;
-  background: var(--accent);
-  border-radius: 50%;
-  pointer-events: none; z-index: 9999;
-  transition: background 0.3s;
-}
-
-.cursor-ring {
-  position: fixed; top: 0; left: 0;
-  width: 36px; height: 36px;
-  border: 1.5px solid var(--accent-ring);
-  border-radius: 50%;
-  pointer-events: none; z-index: 9998;
-  transition: border-color 0.3s;
-}
 
 .navbar {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
@@ -114,7 +94,7 @@ ul  { list-style: none; }
   transition: background 0.4s;
 }
 
-.nav-links { display: flex; align-items: center; gap: 36px; }
+.nav-links { display: flex; align-items: center; gap: 36px; position: relative; }
 
 .nav-link {
   font-size: 14px; font-weight: 500; color: var(--text);
@@ -128,6 +108,24 @@ ul  { list-style: none; }
 
 .nav-link:hover { color: var(--text-h); }
 .nav-link:hover::after { width: 100%; }
+.nav-link.active { color: var(--text-h); }
+
+.nav-indicator {
+  position: absolute; bottom: -6px; height: 2px; border-radius: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  box-shadow: 0 0 10px var(--accent-shadow);
+  pointer-events: none;
+}
+
+/* Cursor-follow glow, applied alongside a card's own class (e.g. "project-card spotlight") */
+.spotlight { position: relative; overflow: hidden; isolation: isolate; }
+.spotlight::before {
+  content: '';
+  position: absolute; inset: 0; z-index: -1; border-radius: inherit;
+  background: radial-gradient(280px circle at var(--mx, 50%) var(--my, 50%), var(--accent-glow-lg), transparent 70%);
+  opacity: 0; transition: opacity 0.35s ease; pointer-events: none;
+}
+.spotlight:hover::before { opacity: 1; }
 
 .nav-cta {
   font-size: 13px; font-weight: 600; color: var(--accent);
@@ -369,6 +367,8 @@ h1.hero-name {
 
 .about-bio p { font-size: 16px; color: var(--text); line-height: 1.85; margin-bottom: 16px; }
 .about-bio strong { color: var(--text-h); font-weight: 600; }
+.about-bio a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; transition: opacity 0.2s; }
+.about-bio a:hover { opacity: 0.8; }
 
 .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 36px; }
 
@@ -424,7 +424,7 @@ h1.hero-name {
 .skill-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
 .skill-name { font-size: 13px; font-weight: 600; color: var(--text-h); }
 
-.timeline { display: flex; flex-direction: column; }
+.timeline { display: flex; flex-direction: column; position: relative; }
 
 .timeline-item { display: grid; grid-template-columns: 28px 1fr; gap: 20px; padding-bottom: 32px; }
 .timeline-item:last-child { padding-bottom: 0; }
@@ -436,11 +436,17 @@ h1.hero-name {
   border: 2.5px solid var(--bg); flex-shrink: 0; z-index: 1;
 }
 
-.timeline-connector {
-  flex: 1; width: 2px;
-  background: linear-gradient(to bottom, var(--accent-border-sm), transparent);
-  margin-top: 6px; border-radius: 1px; min-height: 24px;
-  transition: background 0.4s;
+/* Static track + a colored fill that scrubs in sync with scroll progress */
+.timeline-rail {
+  position: absolute; left: 14px; top: 22px; bottom: 10px; width: 2px;
+  background: var(--accent-border-sm); border-radius: 1px;
+}
+
+.timeline-rail-fill {
+  position: absolute; left: 14px; top: 22px; bottom: 10px; width: 2px;
+  background: linear-gradient(to bottom, var(--accent), var(--accent-2));
+  border-radius: 1px; transform-origin: top;
+  box-shadow: 0 0 8px var(--accent-shadow);
 }
 
 .exp-card {
@@ -470,6 +476,7 @@ h1.hero-name {
 .exp-type-badge { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; padding: 3px 9px; border-radius: 5px; white-space: nowrap; }
 .exp-type-badge.fulltime    { background: rgba(82, 183, 136, 0.12); color: #52B788; border: 1px solid rgba(82, 183, 136, 0.28); }
 .exp-type-badge.internship  { background: rgba(124, 58, 237, 0.12); color: #a78bfa; border: 1px solid rgba(124, 58, 237, 0.28); }
+.exp-type-badge.volunteer   { background: rgba(245, 158, 11, 0.12); color: #f59e0b; border: 1px solid rgba(245, 158, 11, 0.28); }
 
 .exp-bullets { display: flex; flex-direction: column; gap: 9px; margin-bottom: 20px; padding: 0; }
 .exp-bullet { font-size: 14px; color: var(--text); line-height: 1.65; padding-left: 18px; position: relative; }
@@ -480,6 +487,7 @@ h1.hero-name {
 
 @media (max-width: 600px) {
   .timeline-item { grid-template-columns: 20px 1fr; gap: 14px; }
+  .timeline-rail, .timeline-rail-fill { left: 10px; }
   .exp-card { padding: 20px 18px; }
   .exp-header { flex-direction: column; gap: 12px; }
   .exp-header-right { align-items: flex-start; flex-direction: row; flex-wrap: wrap; }

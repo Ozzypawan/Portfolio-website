@@ -1,0 +1,30 @@
+# Pawan Raj Pandey
+
+> Backend Developer (Python, Django, FastAPI, gRPC, microservices) and volunteer IT Lead for Leo Club of Kathmandu Budigandaki. Based in Kathmandu, Nepal.
+
+Pawan Raj Pandey is a backend engineer with 2.5+ years of experience building distributed systems. Currently at Zeta Labs, developing a multi-module SaaS platform with AI integration, microservices architecture, and cross-service gRPC communication. Previously at Ayata Incorporation, built the core backend for iHRTrack, an HR and attendance management platform with real-time RFID and biometric hardware integrations. Also volunteers as IT Lead for Leo Club of Kathmandu Budigandaki, having designed, built, and maintained the club's official website.
+
+## Experience
+
+- Zeta Labs — Backend Developer (Jun 2025–Present): building Process Orchestration, System Intelligence Service, Zeta Health, and other modules with Django, FastAPI, gRPC, RabbitMQ, and PostgreSQL.
+- Ayata Incorporation — Backend Developer (Jul 2024–Apr 2025) and Backend Developer Intern (Apr 2024–Jul 2024): built iHRTrack, an HR and attendance platform with biometric and RFID integrations.
+- Leo Club of Kathmandu Budigandaki — IT Lead, Volunteer (Jun 2026–Present): designed, built, and maintains the club's official website.
+
+## Projects
+
+- [iHRTrack](https://ihrtrack.com/): HR management platform with biometric login, AI-powered facial recognition, RFID access, and geolocation-based mobile check-ins.
+- Process Orchestration: Microservices-based SaaS platform at Zeta Labs spanning KMS, BMS, Orchestration, CMS, and Assessments modules.
+- System Intelligence Service: Automated decision-making engine within the Zeta Labs SaaS platform.
+- Zeta Health: Multi-tenant clinic and hospital management platform with AI-assisted visit summaries.
+- [Leo Club of Kathmandu Budigandaki](https://lckbudigandaki.org.np/): Official website for the Leo Club, built end-to-end.
+
+## Skills
+
+Python, Django, FastAPI, Django REST Framework, PostgreSQL, MySQL, MongoDB, Qdrant, Redis, REST APIs, gRPC, WebSockets, RabbitMQ, Docker, CI/CD, Jenkins, Git, Microservices, RBAC, SaaS Architecture.
+
+## Contact
+
+- Email: pawanpandey1251@gmail.com
+- GitHub: https://github.com/ozzypawan
+- LinkedIn: https://www.linkedin.com/in/pawanrajpandey
+- Website: https://www.pawanrajpandey.com.np/

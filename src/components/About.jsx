@@ -1,11 +1,24 @@
-import { motion } from 'framer-motion'
+import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
 import { education } from '../data/index'
 import { useApp } from '../context/AppContext'
 import { popUp, popLeft, popRight, stagger, VIEWPORT } from '../utils/variants'
+import RevealTitle from './RevealTitle'
 
 export default function About() {
   const { t } = useApp()
   const ta = t.about
+
+  const mx = useMotionValue(0.5)
+  const my = useMotionValue(0.5)
+  const rotateX = useSpring(useTransform(my, [0, 1], [10, -10]), { stiffness: 150, damping: 18 })
+  const rotateY = useSpring(useTransform(mx, [0, 1], [-10, 10]), { stiffness: 150, damping: 18 })
+
+  const handleAvatarMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect()
+    mx.set((e.clientX - rect.left) / rect.width)
+    my.set((e.clientY - rect.top) / rect.height)
+  }
+  const resetAvatarTilt = () => { mx.set(0.5); my.set(0.5) }
 
   return (
     <section id="about">
@@ -19,7 +32,7 @@ export default function About() {
           viewport={VIEWPORT}
         >
           <span className="section-tag">{ta.tag}</span>
-          <h2 className="section-title">{ta.title}</h2>
+          <RevealTitle as="h2" className="section-title" text={ta.title} />
         </motion.div>
 
         <div className="about-grid">
@@ -29,6 +42,9 @@ export default function About() {
             initial="hidden"
             whileInView="show"
             viewport={VIEWPORT}
+            style={{ rotateX, rotateY, transformPerspective: 800 }}
+            onMouseMove={handleAvatarMove}
+            onMouseLeave={resetAvatarTilt}
           >
             <img
               src="/avatar.jpg"

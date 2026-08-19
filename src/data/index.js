@@ -41,6 +41,16 @@ export const skillCategoryKeys = [
 
 export const experience = [
   {
+    id:       4,
+    company:  'Leo Club of Kathmandu Budigandaki',
+    location: 'Kathmandu, Nepal',
+    period:   'Jun 2026 – Present',
+    type:     'Volunteer',
+    link:     'https://lckbudigandaki.org.np/',
+    tech:     ['React', 'Vite', 'EmailJS', 'GitHub Pages'],
+    accent:   '#f59e0b',
+  },
+  {
     id:       1,
     company:  'Zeta Labs',
     location: 'Kuleshwor, Kathmandu',
@@ -85,7 +95,7 @@ export const projects = [
     id:       1,
     tech:     ['Django', 'FastAPI', 'gRPC', 'RabbitMQ', 'Redis', 'PostgreSQL'],
     private:  true,
-    live:     'https://ayata.com.np/',
+    live:     'https://ihrtrack.com/',
     gradient: 'linear-gradient(135deg, rgba(124,58,237,0.12), rgba(124,58,237,0.02))',
     accent:   '#7c3aed',
   },
@@ -104,6 +114,22 @@ export const projects = [
     live:     'https://withzetalabs.com/',
     gradient: 'linear-gradient(135deg, rgba(82,183,136,0.12), rgba(82,183,136,0.02))',
     accent:   '#52B788',
+  },
+  {
+    id:       4,
+    tech:     ['Django', 'FastAPI', 'PostgreSQL', 'RabbitMQ', 'WebSockets', 'RBAC'],
+    private:  true,
+    live:     'https://withzetalabs.com/',
+    gradient: 'linear-gradient(135deg, rgba(236,72,153,0.12), rgba(236,72,153,0.02))',
+    accent:   '#ec4899',
+  },
+  {
+    id:       5,
+    tech:     ['React', 'React Router', 'Vite', 'EmailJS'],
+    private:  true,
+    live:     'https://lckbudigandaki.org.np/',
+    gradient: 'linear-gradient(135deg, rgba(245,158,11,0.12), rgba(245,158,11,0.02))',
+    accent:   '#f59e0b',
   },
 ]
 

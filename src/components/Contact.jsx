@@ -3,6 +3,9 @@ import emailjs from '@emailjs/browser'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useApp } from '../context/AppContext'
 import { popUp, popLeft, popRight, stagger, VIEWPORT } from '../utils/variants'
+import RevealTitle from './RevealTitle'
+import Magnetic from './Magnetic'
+import { handleSpotlightMove } from '../utils/spotlight'
 
 const EJS_SERVICE  = 'service_p2oogfn'
 const EJS_TEMPLATE = 'template_hvp363l'
@@ -85,17 +88,18 @@ export default function Contact() {
           viewport={VIEWPORT}
         >
           <span className="section-tag">{tc.tag}</span>
-          <h2 className="section-title">{tc.title}</h2>
+          <RevealTitle as="h2" className="section-title" text={tc.title} />
           <p className="section-desc">{tc.desc}</p>
         </motion.div>
 
         <div className="contact-grid-new">
           <motion.div
-            className="contact-form-card"
+            className="contact-form-card spotlight"
             variants={popLeft}
             initial="hidden"
             whileInView="show"
             viewport={VIEWPORT}
+            onMouseMove={handleSpotlightMove}
           >
             <h3 className="contact-form-title">{tf.title}</h3>
 
@@ -170,20 +174,22 @@ export default function Contact() {
                     <p className="form-error">{tf.error}</p>
                   )}
 
-                  <button
-                    className="btn btn-primary form-submit-btn"
-                    type="submit"
-                    disabled={status === 'sending'}
-                  >
-                    {status === 'sending' ? (
-                      <span className="btn-sending">
-                        <span className="send-spinner" />
-                        {tf.sending}
-                      </span>
-                    ) : (
-                      tf.send
-                    )}
-                  </button>
+                  <Magnetic className="form-submit-btn" strength={0.25}>
+                    <button
+                      className="btn btn-primary"
+                      type="submit"
+                      disabled={status === 'sending'}
+                    >
+                      {status === 'sending' ? (
+                        <span className="btn-sending">
+                          <span className="send-spinner" />
+                          {tf.sending}
+                        </span>
+                      ) : (
+                        tf.send
+                      )}
+                    </button>
+                  </Magnetic>
                 </motion.form>
               )}
             </AnimatePresence>
@@ -212,11 +218,12 @@ export default function Contact() {
                   <motion.a
                     key={social.key}
                     href={meta.href}
-                    className="social-link-card"
+                    className="social-link-card spotlight"
                     target={meta.href.startsWith('mailto') || meta.href.startsWith('tel') ? '_self' : '_blank'}
                     rel="noreferrer"
                     variants={popUp}
                     whileHover={{ x: 5, transition: { type: 'spring', damping: 15, stiffness: 260 } }}
+                    onMouseMove={handleSpotlightMove}
                   >
                     <div
                       className={`social-icon-badge ${meta.border ? 'social-icon-badge--bordered' : ''}`}

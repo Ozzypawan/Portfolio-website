@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import { skills, skillCategoryKeys } from '../data/index'
 import { useApp } from '../context/AppContext'
 import { popUp, stagger, VIEWPORT, VIEWPORT_SM } from '../utils/variants'
+import RevealTitle from './RevealTitle'
 
 export default function Skills() {
   const { t } = useApp()
@@ -25,7 +26,7 @@ export default function Skills() {
           viewport={VIEWPORT}
         >
           <span className="section-tag">{ts.tag}</span>
-          <h2 className="section-title">{ts.title}</h2>
+          <RevealTitle as="h2" className="section-title" text={ts.title} />
         </motion.div>
 
         <div className="skills-categories">

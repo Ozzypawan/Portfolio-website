@@ -1,11 +1,18 @@
-import { motion } from 'framer-motion'
+import { useRef } from 'react'
+import { motion, useScroll, useSpring } from 'framer-motion'
 import { experience } from '../data/index'
 import { useApp } from '../context/AppContext'
 import { popUp, popRight, stagger, VIEWPORT, VIEWPORT_SM } from '../utils/variants'
+import RevealTitle from './RevealTitle'
+import { handleSpotlightMove } from '../utils/spotlight'
 
 export default function Experience() {
   const { t } = useApp()
   const te = t.experience
+
+  const timelineRef = useRef(null)
+  const { scrollYProgress } = useScroll({ target: timelineRef, offset: ['start 0.8', 'end 0.4'] })
+  const railScale = useSpring(scrollYProgress, { stiffness: 220, damping: 32, mass: 0.4 })
 
   return (
     <section id="experience">
@@ -19,10 +26,13 @@ export default function Experience() {
           viewport={VIEWPORT}
         >
           <span className="section-tag">{te.tag}</span>
-          <h2 className="section-title">{te.title}</h2>
+          <RevealTitle as="h2" className="section-title" text={te.title} />
         </motion.div>
 
-        <div className="timeline">
+        <div className="timeline" ref={timelineRef}>
+          <div className="timeline-rail" />
+          <motion.div className="timeline-rail-fill" style={{ scaleY: railScale }} />
+
           {experience.map((exp, i) => {
             const tx = te.items[i]
             return (
@@ -36,16 +46,16 @@ export default function Experience() {
                     viewport={VIEWPORT_SM}
                     transition={{ delay: i * 0.1, duration: 0.4, type: 'spring', damping: 12, stiffness: 180 }}
                   />
-                  {i < experience.length - 1 && <div className="timeline-connector" />}
                 </div>
 
                 <motion.div
-                  className="exp-card"
+                  className="exp-card spotlight"
                   variants={popRight}
                   initial="hidden"
                   whileInView="show"
                   viewport={VIEWPORT_SM}
                   transition={{ delay: i * 0.08 }}
+                  onMouseMove={handleSpotlightMove}
                 >
                   <div
                     className="exp-accent-bar"
@@ -68,7 +78,7 @@ export default function Experience() {
                     </div>
                     <div className="exp-header-right">
                       <span className="exp-period">{exp.period}</span>
-                      <span className={`exp-type-badge ${exp.type === 'Internship' ? 'internship' : 'fulltime'}`}>
+                      <span className={`exp-type-badge ${exp.type.toLowerCase().replace(/[^a-z]/g, '')}`}>
                         {exp.type}
                       </span>
                     </div>
