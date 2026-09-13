@@ -301,7 +301,7 @@ h1.hero-name {
   color: var(--text-h); letter-spacing: -2.5px; line-height: 1.05;
 }
 
-.hero-title-wrap { display: flex; gap: 14px; margin-bottom: 22px; overflow: hidden; }
+.hero-title-wrap { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 22px; overflow: hidden; }
 
 .hero-word { font-size: clamp(24px, 3.5vw, 40px); font-weight: 700; display: inline-block; }
 .hero-word:first-child { color: var(--accent); transition: color 0.4s; }
@@ -475,6 +475,7 @@ h1.hero-name {
 
 .exp-type-badge { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; padding: 3px 9px; border-radius: 5px; white-space: nowrap; }
 .exp-type-badge.fulltime    { background: rgba(82, 183, 136, 0.12); color: #52B788; border: 1px solid rgba(82, 183, 136, 0.28); }
+.exp-type-badge.remote      { background: rgba(0, 217, 255, 0.12); color: #00d9ff; border: 1px solid rgba(0, 217, 255, 0.28); }
 .exp-type-badge.internship  { background: rgba(124, 58, 237, 0.12); color: #a78bfa; border: 1px solid rgba(124, 58, 237, 0.28); }
 .exp-type-badge.volunteer   { background: rgba(245, 158, 11, 0.12); color: #f59e0b; border: 1px solid rgba(245, 158, 11, 0.28); }
 

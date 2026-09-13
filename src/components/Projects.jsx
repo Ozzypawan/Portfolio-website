@@ -69,15 +69,17 @@ export default function Projects() {
                   ) : (
                     <a href={project.github} className="project-link" target="_blank" rel="noreferrer">GitHub</a>
                   )}
-                  <a
-                    href={project.live}
-                    className="project-link project-link-live"
-                    style={{ color: project.accent }}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    Visit site →
-                  </a>
+                  {!project.private && project.live && project.id !== 2 && project.id !== 3 && (
+                    <a
+                      href={project.live}
+                      className="project-link project-link-live"
+                      style={{ color: project.accent }}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      Visit site →
+                    </a>
+                  )}
                 </div>
               </motion.article>
             )

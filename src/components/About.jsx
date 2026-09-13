@@ -7,6 +7,7 @@ import RevealTitle from './RevealTitle'
 export default function About() {
   const { t } = useApp()
   const ta = t.about
+  const eduMeta = [education.institution, education.university, education.period].filter(Boolean).join(' · ')
 
   const mx = useMotionValue(0.5)
   const my = useMotionValue(0.5)
@@ -92,9 +93,7 @@ export default function About() {
               <div className="edu-icon">🎓</div>
               <div className="edu-info">
                 <span className="edu-degree">{education.degree}</span>
-                <span className="edu-sub">
-                  {education.institution} · {education.university} · {education.period}
-                </span>
+                <span className="edu-sub">{eduMeta}</span>
               </div>
             </motion.div>
           </motion.div>
