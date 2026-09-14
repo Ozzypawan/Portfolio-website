@@ -108,7 +108,7 @@ export default function Navbar() {
         />
         <motion.li initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.7 }}>
           <Magnetic strength={0.3}>
-            <a href="/resume.pdf" className="nav-cta" target="_blank" rel="noreferrer">
+            <a href="/resume-v2.pdf" className="nav-cta" target="_blank" rel="noreferrer">
               {t.nav.resume}
             </a>
           </Magnetic>
@@ -131,7 +131,7 @@ export default function Navbar() {
               {link.label}
             </a>
           ))}
-          <a href="/resume.pdf" target="_blank" rel="noreferrer">{t.nav.resume}</a>
+          <a href="/resume-v2.pdf" target="_blank" rel="noreferrer">{t.nav.resume}</a>
         </motion.div>
       )}
     </motion.nav>
